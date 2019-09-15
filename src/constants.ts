@@ -1,6 +1,6 @@
 import {Dictionary} from 'vue-router/types/router';
 
-export const backendBaseUrl = "http://localhost:8000";
+export const backendBaseUrl = "https://nnio-project-dev.herokuapp.com";
 export const backendUrls = {
   login: backendBaseUrl + "/user/login",
   getLayersSchemas: backendBaseUrl + "/admin/layers_schemas",

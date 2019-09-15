@@ -7,5 +7,7 @@ module.exports = {
       }
     }
   },
-  runtimeCompiler: true
+  runtimeCompiler: true,
+  publicPath: '/nnio_admin/',
+  outputDir: 'docs'
 };
