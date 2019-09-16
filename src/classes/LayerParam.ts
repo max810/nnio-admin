@@ -48,7 +48,7 @@ export default class LayerParam {
       {
         minItems: null,
         maxItems: null,
-        itemsConstraints: []
+        itemsConstraints: new LayerParam("items", "object", false)
       },
     boolean: {},
     string: {},
