@@ -55,7 +55,7 @@ function parseLayerParam(pName: string, pValue: any, requiredParams: string[]) {
 
   const constraints_ =
     (oneOfs && oneOfs.length > 0)
-      ? LayerParam.defaultConstraints[type_]
+      ? LayerParam.getDefaultConstraints()[type_]
       : parseConstraints(paramValue_);
 
   return new LayerParam(name_, type_, required_, constraints_, oneOfs);
@@ -79,7 +79,7 @@ function parseConstraints(prop: any, type_: string = prop.type): any {
   switch (type_) {
     case "string":
     case "boolean":
-      return LayerParam.defaultConstraints[type_];
+      return LayerParam.getDefaultConstraints()[type_];
     case "number":
     case "integer":
       return {

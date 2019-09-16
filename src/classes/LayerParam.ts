@@ -4,7 +4,7 @@ import NamelessLayerParamValue from '@/classes/NamelessLayerParamValue';
 
 export default class LayerParam {
   public isOneOf: boolean;
-  public additionalConstraints: any = JSON.parse(JSON.stringify(LayerParam.defaultConstraints)); // basically a copy
+  public additionalConstraints: any; // basically a copy
   public oneOfs: Dictionary<NamelessLayerParamValue[] | NamelessLayerParamValue[][]>;
 
   public get activeOneOfs(): NamelessLayerParamValue[] | NamelessLayerParamValue[][] {
@@ -25,7 +25,8 @@ export default class LayerParam {
       this.oneOfs[k] = [];
     }
     this.oneOfs[type] = oneOfs || [];
-    this.additionalConstraints[type] = constraints || LayerParam.defaultConstraints[type];
+    this.additionalConstraints = LayerParam.getDefaultConstraints();
+    this.additionalConstraints[type] = constraints || LayerParam.getDefaultConstraints()[type];
     this.isOneOf = (oneOfs && oneOfs.length > 0);
   }
 
@@ -33,25 +34,27 @@ export default class LayerParam {
     return new LayerParam("", "string", false);
   }
 
-  static readonly defaultConstraints: Dictionary<object> = {
-    number:
-      {
-        maximum: null,
-        minimum: null,
-      },
-    integer:
-      {
-        maximum: null,
-        minimum: null,
-      },
-    array:
-      {
-        minItems: null,
-        maxItems: null,
-        itemsConstraints: new LayerParam("items", "object", false)
-      },
-    boolean: {},
-    string: {},
-    object: [],
-  };
+  static getDefaultConstraints(): Dictionary<object> {
+    return {
+      number:
+        {
+          maximum: null,
+          minimum: null,
+        },
+      integer:
+        {
+          maximum: null,
+          minimum: null,
+        },
+      array:
+        {
+          minItems: null,
+          maxItems: null,
+          itemsConstraints: new LayerParam("items", "object", false)
+        },
+      boolean: {},
+      string: {},
+      object: [],
+    };
+  }
 }
