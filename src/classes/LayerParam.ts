@@ -12,6 +12,10 @@ export default class LayerParam {
   }
 
   public get activeConstraints(): LayerParam[] | any {
+    if (this.type === 'array' && this.additionalConstraints['array'].itemsConstraints === null) {
+      this.additionalConstraints['array'].itemsConstraints = new LayerParam("itemsConstraints", "number", false);
+    }
+
     return this.additionalConstraints[this.type];
   }
 
@@ -50,7 +54,7 @@ export default class LayerParam {
         {
           minItems: null,
           maxItems: null,
-          itemsConstraints: new LayerParam("items", "object", false)
+          itemsConstraints: null
         },
       boolean: {},
       string: {},
