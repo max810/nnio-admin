@@ -55,7 +55,8 @@
   import LayerParamValue from '@/classes/LayerParamValue';
 
   @Component({
-    components: {AtomicOneOfs, ParamsValuesList, AtomicConstraints, ParamsList}
+    components: {AtomicOneOfs, ParamsValuesList, AtomicConstraints, ParamsList},
+    name: 'constraints'
   })
   export default class Constraints extends Vue {
     @Prop(LayerParam) param: LayerParam | undefined;
