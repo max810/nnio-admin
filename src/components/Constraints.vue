@@ -21,7 +21,7 @@
       <atomic-constraints v-if="param.type !== 'object'" v-bind:param="param"></atomic-constraints>
       <params-list v-else v-bind:params="param.activeConstraints"
                    v-bind:baseId="baseId"></params-list>
-      <div v-if="param.type === 'array'">
+      <div v-if="param.type === 'array'" class="container">
         Constraints for array items:
         <constraints v-bind:param="param.activeConstraints.itemsConstraints"
                      v-bind:baseId="`items-${baseId}`"></constraints>
@@ -60,7 +60,7 @@
   export default class Constraints extends Vue {
     @Prop(LayerParam) param: LayerParam | undefined;
     @Prop(String) baseId: string | undefined;
-    @Prop(String) name = "constraints";
+    name = "constraints";
 
     addNewOneOfObject(event: MouseEvent) {
       this.param!.activeOneOfs.push(<any>[]);
