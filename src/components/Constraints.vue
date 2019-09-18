@@ -60,7 +60,7 @@
   export default class Constraints extends Vue {
     @Prop(LayerParam) param: LayerParam | undefined;
     @Prop(String) baseId: string | undefined;
-    name = "constraints";
+    @Prop(String) name = "constraints";
 
     addNewOneOfObject(event: MouseEvent) {
       this.param!.activeOneOfs.push(<any>[]);

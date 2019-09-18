@@ -10,6 +10,7 @@
       </div>
     </nav>
     <div id="nav">
+      <test1 v-bind:t="2"></test1>
       <router-link to="/">Home</router-link>
       |
       <router-link to="/login">LOGIN</router-link>
@@ -61,3 +62,14 @@
   }
 
 </style>
+<script>
+  import Vue from "vue";
+  import {Component} from "vue-class-component";
+  import Test1 from "./views/test1";
+
+  @Component({
+    components: {Test1}
+  })
+  export default class App extends Vue {
+  }
+</script>
