@@ -52,7 +52,7 @@
 
   @Component({})
   export default class AtomicConstraints extends Vue {
-    JSONTypes = JSONTypes;
+    private JSONTypes = JSONTypes;
     @Prop(LayerParam) param: LayerParam | undefined;
   }
 </script>

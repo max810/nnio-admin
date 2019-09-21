@@ -28,7 +28,7 @@
     components: {CloseButton, AtomicParamValueInput}
   })
   export default class AtomicOneOfs extends Vue {
-    JSONTypes = JSONTypes;
+    private JSONTypes = JSONTypes;
     @Prop(Array) items: any[] | undefined;
     @Prop(String) itemsType: string | undefined;
 

@@ -18,7 +18,7 @@
 
   @Component({})
   export default class AtomicParamValueInput extends Vue {
-    JSONTypes = JSONTypes;
+    private JSONTypes = JSONTypes;
     @Prop(NamelessLayerParamValue) param: NamelessLayerParamValue | undefined;
     @Prop(String) paramType: string | undefined;
     // addItemTo

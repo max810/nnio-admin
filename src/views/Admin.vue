@@ -36,8 +36,8 @@
               role="tabpanel"
               v-bind:aria-labelledby="`list-${lSchema.layerType}-list`"
           >
-            Rename layer: <input v-model="lSchema.layerType">
-            <close-button v-on:click="deleteLayerSchema(param)"></close-button>
+            Rename layer: <input-regex-check v-bind:regex="rc.nameRegex" v-model="lSchema.layerType"></input-regex-check>
+            <close-button v-on:click="deleteLayerSchema(lSchema)"></close-button>
             <br>
             <br>
             <params-list v-bind:params="lSchema.layerParams" v-bind:baseId="lSchema.layerType">
@@ -61,13 +61,15 @@
   import CloseButton from '@/components/CloseButton.vue';
   import {parseLayersSchemas} from '@/utils/LayerSchemaParsing';
   import {layerSchemasToJsonSchemas} from '@/utils/LayerSchemaSaving';
+  import InputRegexCheck from '@/components/InputRegexCheck.vue';
 
   @Component({
-    components: {ParamsList, Constraints, CloseButton}
+    components: {InputRegexCheck, ParamsList, Constraints, CloseButton}
   })
   export default class Admin extends Vue {
     layerSchemas: LayerSchema[] = [];
-    JSONTypes = JSONTypes;
+    private JSONTypes = JSONTypes;
+    private rc = InputRegexCheck;
 
     saveSchemas() {
       console.log("OK!");

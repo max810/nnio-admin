@@ -2,8 +2,8 @@
   <table class="table table-bordered">
     <tr v-for="param of params">
       <td class="fit" v-if="withNames">
-        <input type="text"
-               v-model="param.name" pattern="[a-zA-Z0-9]">
+        <input-regex-check
+            v-model="param.name" v-bind:regex="rc.nameRegex"></input-regex-check>
       </td>
       <td>
         <select v-model="param.type">
@@ -39,15 +39,18 @@
   import LayerParamValue from "@/classes/LayerParamValue";
   import AtomicParamValueInput from '@/components/AtomicParamValueInput.vue';
   import CloseButton from '@/components/CloseButton.vue';
+  import InputRegexCheck from '@/components/InputRegexCheck.vue';
 
   @Component({
-    components: {CloseButton, AtomicParamValueInput}
+    components: {InputRegexCheck, CloseButton, AtomicParamValueInput}
   })
   export default class ParamsValuesList extends Vue {
+    private rc = InputRegexCheck;
+
     @Prop(Array) params: LayerParamValue[] | undefined;
     @Prop(String) baseId: string | undefined;
     @Prop({type: Boolean, default: false}) withNames: boolean | undefined;
-    JSONTypes = JSONTypes;
+    private JSONTypes = JSONTypes;
     name = "params-values-list";
 
     beforeCreate() {
