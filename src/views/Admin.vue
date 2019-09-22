@@ -4,14 +4,14 @@
       <div class="col-2">
         <div class="list-group" id="list-tab" role="tablist">
           <a
-              v-for="lSchema of layerSchemas"
-              v-bind:key="lSchema.layerType"
               class="list-group-item list-group-item-action"
+              v-for="lSchema of layerSchemas"
               v-bind:id="`list-${lSchema.layerType}-list`"
               data-toggle="list"
               v-bind:href="`#list-${lSchema.layerType}`"
               role="tab"
               v-bind:aria-controls="lSchema.layerType"
+              v-bind:key="lSchema.layerType"
           >{{ lSchema.layerType }}</a>
           <div class="list-group-item">
             <button class="btn btn-primary" v-on:click="addLayerSchema" style="width: 100%; height: 100%;">+
@@ -36,7 +36,9 @@
               role="tabpanel"
               v-bind:aria-labelledby="`list-${lSchema.layerType}-list`"
           >
-            Rename layer: <input-regex-check v-bind:regex="rc.nameRegex" v-model="lSchema.layerType"></input-regex-check>
+            <button class="btn btn-sm btn-success" v-on:click="clone(lSchema)">Clone layer</button>
+            Rename layer:
+            <input-regex-check v-bind:regex="rc.nameRegex" v-model="lSchema.layerType"></input-regex-check>
             <close-button v-on:click="deleteLayerSchema(lSchema)"></close-button>
             <br>
             <br>
@@ -93,6 +95,18 @@
 
     addLayerSchema(event: MouseEvent) {
       this.layerSchemas!.push(LayerSchema.createDefault());
+    }
+
+    clone(lSchema: LayerSchema) {
+      const lSchemaClone = lSchema.clone();
+      // const names = this.layerSchemas!.map(x => x.layerType);
+      // const lastNumbersReversed = names.map(x => parseInt(x.split('').reverse().join('')));
+      // const lastNumbers = lastNumbersReversed.map(x => parseInt(x.toString().split('.').reverse().join('')));
+      //
+      // lastNumbers.sort((a, b) => b - a);  // descending order
+      // const largestNumber = lastNumbers[0];
+      lSchemaClone.layerType += '1';
+      this.layerSchemas!.push(lSchemaClone);
     }
 
     mounted() {

@@ -1,7 +1,7 @@
 import {Dictionary} from 'vue-router/types/router';
 import {JSONDefaults} from '@/constants';
 
-export default class NamelessLayerParamValue {
+export default class NamelessLayerParamValue implements ICloneable<NamelessLayerParamValue> {
   public values: Dictionary<any>;
 
   public get activeValue(): any {
@@ -16,5 +16,9 @@ export default class NamelessLayerParamValue {
               public value: any) {
     this.values = JSON.parse(JSON.stringify(JSONDefaults));
     this.values[type] = value;
+  }
+
+  clone(): NamelessLayerParamValue {
+    return new NamelessLayerParamValue(this.type, this.value);
   }
 }
