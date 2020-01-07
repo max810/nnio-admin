@@ -35,14 +35,14 @@ export function layerSchemasToJsonSchemas(schemas: LayerSchema[]): any {
           type: "object",
           properties: props,
           required: required,
-        },
-        required: [
-          "name",
-          "type",
-          "inputs",
-          "params"
-        ]
-      }
+        }
+      },
+      required: [
+        "name",
+        "type",
+        "inputs",
+        "params"
+      ]
     };
   }
 
