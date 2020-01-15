@@ -1,25 +1,15 @@
 #!/usr/bin/env sh
 
-# остановить публикацию при ошибках
-set -e
-
-# сборка
+echo $1
+git checkout backend_dev
+git add .
+git s
+git commit -m $1
+git push github backend_dev
+git checkout master
+git merge backend_dev
 npm run build
-
-# переход в каталог сборки
-cd dist
-
-# если вы публикуете на пользовательский домен
-# echo 'www.example.com' > CNAME
-
-git init
-git add -A
-git commit -m 'deploy'
-
-# если вы публикуете по адресу https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
-
-# если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/max810/nnio_admin.git master:gh-pages
-
-cd -
+git add .
+git s
+git commit -m 'Updated deploy files'
+git push github master
