@@ -83,6 +83,7 @@
         .then(
           response => {
             console.log(response);
+            alert('Saved successfully!');
           },
           err => {
             console.log(err);
