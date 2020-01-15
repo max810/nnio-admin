@@ -72,9 +72,13 @@ function convertLayerParam(layerParam: LayerParam) {
       for (const layerParamInner of layerParam.activeConstraints) {
         res['properties'][layerParamInner.name] = convertLayerParam(layerParamInner);
       }
-      res['required'] = (<LayerParam[]>layerParam.activeConstraints)
+      const reqs = (<LayerParam[]>layerParam.activeConstraints)
         .filter(x => x.required)
         .map(x => x.name);
+      if (reqs.length > 0) {
+        // because `required` property in json schemas must contain at least 1 elements
+        res['required'] = reqs;
+      }
     }
   } else {
     if (layerParam.type === 'array') {
