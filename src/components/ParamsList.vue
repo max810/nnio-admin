@@ -1,6 +1,6 @@
 <template>
   <table class="table table-bordered">
-    <tr v-for="param of params">
+    <tr v-for="param of params" v-bind:key="param.name">
       <td class="fit">
         <input-regex-check
             v-model="param.name" v-bind:regex="rc.nameRegex"></input-regex-check>
